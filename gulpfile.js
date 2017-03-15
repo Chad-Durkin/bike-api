@@ -23,8 +23,7 @@ var lib = require('bower-files') ({
 });
 
 var browserSync = require('browser-sync').create();
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
+
 
 gulp.task('jshint', function() {
   return gulp.src(['js/*.js'])
@@ -46,26 +45,26 @@ gulp.task('jsBrowserify', ['concatInterface'], function() {
 });
 
 gulp.task('minifyScripts', ['jsBrowserify'], function() {
-  return gulp.src('./buld/js/app.js')
+  return gulp.src('./build/js/app.js')
     .pipe(uglify())
     .pipe(gulp.dest('./build/js'))
 });
 
-gulp.task('jsBower', function() {
+gulp.task('bowerJS', function () {
   return gulp.src(lib.ext('js').files)
     .pipe(concat('vendor.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./build/js'));
 });
 
-gulp.task('cssBower', function() {
+gulp.task('bowerCSS', function () {
   return gulp.src(lib.ext('css').files)
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./build/css'));
 });
 
 
-gulp.task('bower', ['jsBower', 'cssBower']);
+gulp.task('bower', ['bowerJS', 'bowerCSS']);
 
 gulp.task('clean', function() {
   return del(['build', 'tmp']);

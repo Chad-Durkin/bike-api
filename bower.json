@@ -3,18 +3,17 @@
   "description": "",
   "main": "index.js",
   "license": "ISC",
+  "moduleType": [],
   "homepage": "",
   "ignore": [
-    "**/.*",
+    "*/.",
     "node_modules",
     "bower_components",
     "test",
     "tests"
   ],
-  "devDependencies": {
+  "dependencies": {
     "jquery": "^3.1.1",
-    "bootstrap": "^3.3.7",
-    "materialize": "^0.98.0",
-    "moment": "^2.17.1"
+    "bootstrap": "^3.3.7"
   }
 }
