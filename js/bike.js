@@ -1,12 +1,15 @@
-var apiBikeKey =  require('./../.env').apiBikeKey;
-var apiBikeKey =  require('./../.env').appIDBike;
+var apiKey =  require('./../.env').apiKey;
 
 Bike = function() {
 };
 
-Bike.prototype.searchBike = function (distance, city) {
-    $.get('https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=' + city + '&distance=' + distance + '&stolenness=all').then(function(response) { displayBikes(city, response.bikes.length);}).fail(function(error) {
-        $('.showBike').text(error.responseJson.message);
+Bike.prototype.searchBike = function (distance, city, displayBikes) {
+    $.get('https://bikeindex.org:443/api/v3/search?page=1&per_page=25&location=' + city + '&distance=' + distance + '&stolenness=proximity&access_token=' + apiKey).then(function(response) {
+            response.bikes.forEach( function(bike) {
+                displayBikes(bike);
+            });
+        }).fail(function(error) {
+            $('.showBike').text(error.responseJSON.message);
     });
 };
 
